@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $all_users = User::all();
+        $all_users = User::all()->except(1);
         $users = [];
         foreach ($all_users as $key => $value) {
             if ($value->hasRole(['Admin', 'Practicum'])) {
@@ -61,8 +61,6 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->back();
+        return;
     }
 }

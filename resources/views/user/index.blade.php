@@ -57,11 +57,6 @@
                                     <td>{{ $user->is_verified == 1 ? 'true' : 'false' }}</td>
                                     <td>
                                         <a href="{{route('user.edit', $user->id)}}" class="btn btn-info">Edit</a>
-                                        <button type="submit" form="user-delete-{{$user->id}}" class="btn btn-danger">Delete</button>
-                                        <form onsubmit="return confirm('Do you want to delete this data?');" id="user-delete-{{$user->id}}" action="{{route('user.destroy', $user->id)}}" method="POST">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

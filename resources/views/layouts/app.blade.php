@@ -48,6 +48,7 @@
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                         @else
+                            <li><a href="{{ route('profile') }}">Profile</a></li>
                             @if(auth()->user()->hasRole(['Student']))
                             <li><a href="{{ route('timesheet.index') }}">Timesheet</a></li>
                             @endif
@@ -72,6 +73,10 @@
                                     <li><a href="{{ route('user.index') }}">User Management</a></li>
                                     <li class="divider"></li>
                                     @endif
+                                    @if(auth()->user()->hasRole('Student'))
+                                    <li><a href="{{ route('ojt.form') }}">Ojt Form</a></li>
+                                    @endif
+
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

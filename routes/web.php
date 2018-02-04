@@ -18,6 +18,11 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'dashboard',
     ]);
 
+    Route::get('/profile', [
+        'uses' => 'ProfileController@index',
+        'as' => 'profile',
+    ]);
+
     Route::group(['middleware' => ['role:Student']], function () {
 
         Route::get('/form-company', [
@@ -91,6 +96,11 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['middleware' => 'auth', 'middleware' => ['role:Student', 'requirements']], function () {
 
     Route::resource('timesheet', 'TimesheetController');
+
+    Route::get('/ojt-form', [
+        'uses' => 'ProfileController@ojtForm',
+        'as' => 'ojt.form',
+    ]);
 });
 
 Route::group(['middleware' => 'auth', 'middleware' => ['role:Admin|Practicum']], function () {
