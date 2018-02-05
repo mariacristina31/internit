@@ -16,7 +16,7 @@ class StudentRequirement
     public function handle($request, Closure $next)
     {
         if (auth()->user()->is_verified == false) {
-            return redirect()->route('requirements.company');
+            return redirect()->route('requirements.information');
         }
         return $next($request);
     }

@@ -32,11 +32,11 @@ class HomeController extends Controller
         $student = Student::find(auth()->user()->student->id);
         if ($request->route == 'requirements.company') {
             $student->update($request->all());
-            return redirect()->route('requirements.information');
+            return redirect()->route('requirements.documents');
         } elseif ($request->route == 'requirements.information') {
             $student->user->update($request->all());
             $student->update($request->all());
-            return redirect()->route('requirements.documents');
+            return redirect()->route('requirements.company');
         } elseif ($request->route == 'requirements.documents') {
             $requirements = Requirement::all();
             foreach ($request->attachment as $key => $value) {

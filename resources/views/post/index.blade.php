@@ -40,7 +40,6 @@
                                         <td>{{ str_limit($post->attachment, 10, '...') }}</td>
                                         <td>
                                             <a href="{{url('files/'.$post->attachment)}}" target="_blank" class="btn btn-default">Download</a>
-                                            {{-- <a data-toggle="modal"href="{{route('post.edit', $post->id)}}" class="btn btn-info">Edit</a> --}}
                                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpost-{{$post->id}}">
                                             Edit
                                             </button>

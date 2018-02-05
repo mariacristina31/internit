@@ -35,7 +35,9 @@
         <div class="container-fluid p-4">
         <div class="col-md-12">
             <div class="form-group">
-                <a href="{{route('user.create')}}" class="btn btn-primary btn-lg">Create User</a>
+                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createpost">
+                    Create User
+                    </button>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">User Management</div>
@@ -67,14 +69,18 @@
                                     <td>{{ !empty($user->company->first()) ? $user->company->first()->name : '' }}</td>
                                     <td>{{ $user->is_verified == 1 ? 'true' : 'false' }}</td>
                                     <td>
-                                        <a href="{{route('user.edit', $user->id)}}" class="btn btn-info">Edit</a>
-                                        <button type="submit" form="user-delete-{{$user->id}}" class="btn btn-danger">Delete</button>
+                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpost-{{$user->id}}">
+                                            Edit
+                                            </button>
+                                      {{--   <button type="submit" form="user-delete-{{$user->id}}" class="btn btn-danger">Delete</button>
                                         <form onsubmit="return confirm('Do you want to delete this data?');" id="user-delete-{{$user->id}}" action="{{route('user.destroy', $user->id)}}" method="POST">
                                             {{ method_field('DELETE') }}
                                             {{ csrf_field() }}
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
+                                @include('user.includes._modalEdit')
+
                                 @endforeach
                             </tbody>
                         </table>
@@ -85,6 +91,8 @@
         </div>
     </div>
 </div>
+
+@include('user.includes._modalAdd')
 @endsection
 @section('script')
 <script>

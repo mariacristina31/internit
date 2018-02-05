@@ -3,25 +3,26 @@
 @section('content')
 <div class="container">
     <div class="row bs-wizard" style="border-bottom:0;">
-        <div class="col-xs-3 bs-wizard-step complete">
+        <div class="col-sm-3 bs-wizard-step active">
             <div class="text-center bs-wizard-stepnum">Step 1</div>
             <div class="progress">
                 <div class="progress-bar">
                 </div>
             </div>
-            <a href="{{route('requirements.company')}}" class="bs-wizard-dot"></a>
-            <div class="bs-wizard-info text-center">Find a company</div>
+          <a href="{{route('requirements.information')}}" class="bs-wizard-dot"></a>
+            <div class="bs-wizard-info text-center">Enter your information</div>
         </div>
-        <div class="col-xs-3 bs-wizard-step active">
+        <div class="col-sm-3 bs-wizard-step disabled">
             <div class="text-center bs-wizard-stepnum">Step 2</div>
             <div class="progress">
                 <div class="progress-bar">
                 </div>
             </div>
-            <a href="{{route('requirements.information')}}" class="bs-wizard-dot"></a>
-            <div class="bs-wizard-info text-center">Enter your information</div>
+                        <a href="{{route('requirements.company')}}" class="bs-wizard-dot"></a>
+            <div class="bs-wizard-info text-center">Find a company</div>
+
         </div>
-        <div class="col-xs-3 bs-wizard-step disabled">
+        <div class="col-sm-3 bs-wizard-step disabled">
             <div class="text-center bs-wizard-stepnum">Step 3</div>
             <div class="progress">
                 <div class="progress-bar">
@@ -30,7 +31,7 @@
             <a href="#" class="bs-wizard-dot"></a>
             <div class="bs-wizard-info text-center">Submit your documents</div>
         </div>
-        <div class="col-xs-3 bs-wizard-step disabled">
+        <div class="col-sm-3 bs-wizard-step disabled">
             <div class="text-center bs-wizard-stepnum">Completed</div>
             <div class="progress">
                 <div class="progress-bar">
@@ -42,7 +43,8 @@
     </div>
     <hr>
     <div class="row">
-        <div class="col-md-12">
+              <div class="col-md-2"></div>
+        <div class="col-md-8">
             @include('includes._message')
             <div class="panel panel-default">
                 <div class="panel-heading">Enter your information</div>

@@ -2,7 +2,14 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+          <div class="container-fluid p-4">
+            <div class="col-md-12">
+                <center>
+                <h3 class="mb-0">
+                    <span class="text-primary">Company Student List</span>
+                </h3>
+                </center>
+                <hr>
             <div class="form-group">
                 <a href="{{route('company.index')}}" class="btn btn-primary btn-lg">Company List</a>
             </div>
@@ -50,6 +57,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>

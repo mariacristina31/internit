@@ -12,7 +12,9 @@
             <hr>
             <br/>
             <div class="form-group">
-                <a href="{{route('section.create')}}" class="btn btn-primary btn-lg">Create Section</a>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createpost">
+                Create Section
+                </button>
             </div>
             <hr>
             <div class="panel panel-default">
@@ -38,7 +40,9 @@
                                     <td>{{ sizeof($section->students) }}</td>
                                     <td>
                                         <a href="{{route('section.students', $section->id)}}" class="btn btn-primary">Students</a>
-                                        <a href="{{route('section.edit', $section->id)}}" class="btn btn-info">Edit</a>
+                                           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpost-{{$section->id}}">
+                                            Edit
+                                            </button>
                                         <button type="submit" form="section-delete-{{$section->id}}" class="btn btn-danger">Delete</button>
                                         <form onsubmit="return confirm('Do you want to delete this data?');" id="section-delete-{{$section->id}}" action="{{route('section.destroy', $section->id)}}" method="POST">
                                             {{ method_field('DELETE') }}
@@ -46,16 +50,17 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @include('section.includes._modalEdit')
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </div>
 </div>
+@include('section.includes._modalAdd')
 @endsection
 @section('script')
 <script>

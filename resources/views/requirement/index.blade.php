@@ -13,7 +13,9 @@
             <br/>
             <div class="container-fluid p-4">
             <div class="form-group">
-                <a href="{{route('requirement.create')}}" class="btn btn-primary btn-lg">Create Requirement</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createpost">
+                Create Requirement
+                </button>
             </div>
             <hr>
             <div class="panel panel-default">
@@ -34,7 +36,9 @@
                                     <td>{{ $requirement->id }}</td>
                                     <td>{{ $requirement->name }}</td>
                                     <td>
-                                        <a href="{{route('requirement.edit', $requirement->id)}}" class="btn btn-info">Edit</a>
+                                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpost-{{$requirement->id}}">
+                                            Edit
+                                            </button>
                                         <button type="submit" form="requirement-delete-{{$requirement->id}}" class="btn btn-danger">Delete</button>
                                         <form onsubmit="return confirm('Do you want to delete this data?');" id="requirement-delete-{{$requirement->id}}" action="{{route('requirement.destroy', $requirement->id)}}" method="POST">
                                             {{ method_field('DELETE') }}
@@ -42,6 +46,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @include('requirement.includes._modalEdit')
                                 @endforeach
                             </tbody>
                         </table>
@@ -52,6 +57,7 @@
         </div>
     </div>
 </div>
+@include('requirement.includes._modalAdd')
 @endsection
 @section('script')
 <script>

@@ -2,13 +2,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create Student</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form onsubmit="return confirm('Do you want to save this data?');" method="POST" action="{{ route('student.store') }}">
+                <form onsubmit="return confirm('Do you want to save this data?');" method="POST" action="{{ route('user.store') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="first_name">First Name</label>
@@ -23,11 +23,11 @@
                         <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="section_id">Section</label>
-                        <select class="form-control" name="section_id" id="section_id" required>
-                            <option {{ old('section_id') == null ? 'selected' : '' }} disabled>Select Section</option>
-                            @foreach($sections as $section)
-                            <option {{ old('section_id') == $section->id ? 'selected' : '' }} value="{{$section->id}}">{{$section->name}} ({{$section->school_year}})</option>
+                        <label for="role_id">Role</label>
+                        <select class="form-control" name="role_id" id="role_id" required>
+                            <option {{ old('role_id') == null ? 'selected' : '' }} disabled>Select Role</option>
+                            @foreach($roles->except([3,4]) as $role)
+                            <option {{ old('role_id') == $role->id ? 'selected' : '' }} value="{{$role->id}}">{{$role->name}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -2,26 +2,35 @@
 @section('content')
 <div class="container">
     <div class="row">
+              <div class="container-fluid p-4">
         <div class="col-md-12">
+            <center>
+            <h3 class="mb-0">
+                <span class="text-primary">Create Company</span>
+            </h3>
+            </center>
+            <hr>
             <div class="panel panel-default">
-                <div class="panel-heading">Create Company</div>
+                <div class="panel-heading"></div>
                 <div class="panel-body">
                     <form enctype="multipart/form-data" onsubmit="return confirm('Do you want to save this data?');" method="POST" action="{{ route('company.store') }}">
                         {{ csrf_field() }}
-                        <div class="col-sm-3">
+                        <div class="col-md-12">
                             <center>
                             <a class="thumbnail" href="#" data-target="#picture">
                                 <img id="picture_view" src="{{ asset('images/dummy_company.png') }}" height="200" width="200" class="img-responsive" alt="picture">
                             </a>
                             </center>
                             <div class="form-group">
-                                <button type="button" class="btn btn-info form-control" id="file-upload">
+                                <center>
+                                <button type="button" class="btn btn-info" id="file-upload">
                                 <i class="fa fa-camera" aria-hidden="true"></i>
                                 </button>
+                            </center>
                                 <input style="visibility: hidden;" type="file" name="picture" id="picture" class="hide" accept="image/*">
                             </div>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -54,6 +63,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 @endsection
