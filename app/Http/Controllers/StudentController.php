@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Company;
+use App\Role;
+use App\Section;
+use App\Student;
+use App\User;
+use Illuminate\Http\Request;
+
+class StudentController extends Controller
+{
+    public function index()
+    {
+        $students = Student::all();
+        return view('student.index', compact('students'));
+    }
+
+    public function create()
+    {
+        $sections = Section::all();
+        $companies = Company::all();
+        return view('student.create', compact('sections', 'companies'));
+    }
+
+    public function store(Request $request)
+    {
+        $code = 'oims-' . mt_rand(5, 99999);
+        $role_student = Role::where('name', 'Student')->first();
+        $user = new User;
+        $user_data = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'username' => $code,
+            'password' => bcrypt($code),
+        ];
+        $user->fill($user_data)->save();
+        $user->roles()->attach($role_student);
+        $student = new Student;
+        $request->request->add(['user_id' => $user->id]);
+        $student->fill($request->all())->save();
+        return redirect()->route('student.index');
+    }
+
+    public function show($id)
+    {
+        return;
+    }
+
+    public function edit($id)
+    {
+        $student = Student::find($id);
+        $sections = Section::all();
+        $companies = Company::all();
+        return view('student.edit', compact('student', 'sections', 'companies'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $student = Student::find($id);
+        $student->user->update($request->all());
+        $student->update($request->all());
+        return redirect()->route('student.index');
+    }
+
+    public function destroy($id)
+    {
+        $student = Student::find($id);
+        if (!empty($student->user)) {
+            $student->user->delete();
+        }
+        $student->delete();
+        return redirect()->back();
+    }
+}
