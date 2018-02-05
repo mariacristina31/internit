@@ -4,7 +4,27 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
+                <strong><h3>Import Student Format: *CSV</h3><strong></strong>
+                <p>Fields:</p>
+                <ul>
+                    <li>student_number</li>
+                    <li>first_name</li>
+                    <li>last_name</li>
+                    <li>middle_name</li>
+                    <li>section</li>
+                    <li>school_year</li>
+                </ul>
+
+                <form id="import" action="{{route('student.import')}}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <button type="button" class="btn btn-info btn-lg" id="file-upload">
+                        Import Student
+                    </button>
+                    <input onchange="this.form.submit()" type="file" name="csvs" accept=".csv" id="csv" class="hide">
+                </form>
+                <hr>
                 <a href="{{route('student.create')}}" class="btn btn-primary btn-lg">Create Student</a>
+
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Student list</div>
@@ -62,6 +82,10 @@
 <script>
     $(document).ready(function(){
         $('#datatable').DataTable();
+
+        $("#file-upload").on('click',function(){
+           $("#csv").click();
+        });
     });
 </script>
 @endsection
