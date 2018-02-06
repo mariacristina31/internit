@@ -123,6 +123,11 @@ Route::group(['middleware' => 'auth', 'middleware' => ['role:Admin']], function 
 
     Route::resource('user', 'UserController');
 
+    Route::post('/student/import', [
+        'uses' => 'StudentController@importCsv',
+        'as' => 'student.import',
+    ]);
+
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'section', 'middleware' => ['role:Admin|Practicum']], function () {
