@@ -28,10 +28,12 @@
                     <button type="button" class="btn btn-info btn-lg" id="file-upload">
                         Import Student
                     </button>
-                    <input onchange="this.form.submit()" type="file" name="csvs" accept=".csv" id="csv" class="hide">
+                    <input onchange="this.form.submit()" type="file" name="csvs" accept=".csv" id="csv" style="visibility: hidden;">
                 </form>
                 <hr>
-                <a href="{{route('student.create')}}" class="btn btn-primary btn-lg">Create Student</a>
+                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createpost">
+                    Create Student
+                    </button>
 
             </div>
             <hr>
@@ -69,7 +71,9 @@
                                     <td>{{ $student->user->contact }}</td>
                                     <td>{{ $student->user->is_verified == 1 ? 'true' : 'false' }}</td>
                                     <td>
-                                        <a href="{{route('student.edit', $student->id)}}" class="btn btn-info">Edit</a>
+                                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpost-{{$student->id}}">
+                                            Edit
+                                            </button>
                                         <button type="submit" form="student-delete-{{$student->id}}" class="btn btn-danger">Delete</button>
                                         <form onsubmit="return confirm('Do you want to delete this data?');" id="student-delete-{{$student->id}}" action="{{route('student.destroy', $student->id)}}" method="POST">
                                             {{ method_field('DELETE') }}
@@ -77,6 +81,8 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @include('student.includes._modalEdit')
+
                                 @endforeach
                             </tbody>
                         </table>
@@ -87,6 +93,7 @@
         </div>
     </div>
 </div>
+@include('student.includes._modalAdd')
 @endsection
 @section('script')
 <script>

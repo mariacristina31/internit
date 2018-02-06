@@ -110,6 +110,7 @@
     <script src="{{ asset('js/resume.min.js') }}"></script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://unpkg.com/sweetalert2@7.1.2/dist/sweetalert2.all.js"></script>
+
     @yield('script')
   </body>
 

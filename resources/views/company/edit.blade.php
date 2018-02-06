@@ -19,7 +19,7 @@
                                 <button type="button" class="btn btn-info form-control" id="file-upload">
                                 <i class="fa fa-camera" aria-hidden="true"></i>
                                 </button>
-                                <input type="file" name="picture" id="picture" class="hide" accept="image/*">
+                                <input style="visibility: hidden;" type="file" name="picture" id="picture" class="hide" accept="image/*">
                             </div>
                         </div>
                         <div class="col-sm-9">
