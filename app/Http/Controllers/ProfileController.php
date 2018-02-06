@@ -7,7 +7,7 @@ class ProfileController extends Controller
     public function index()
     {
         $auth = auth()->user();
-        return view('profile.index', compact('auth'));
+        return view('profile', compact('auth'));
     }
 
     public function ojtForm()

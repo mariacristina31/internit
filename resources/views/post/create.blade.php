@@ -2,9 +2,16 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="container-fluid p-4">
+            <center>
+            <h3 class="mb-0">
+                <span class="text-primary">Create Post</span>
+            </h3>
+            </center>
+            <hr>
+            <br/>
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
-                <div class="panel-heading">Create Post</div>
                 <div class="panel-body">
                     <form enctype="multipart/form-data" onsubmit="return confirm('Do you want to save this data?');" method="POST" action="{{ route('post.store') }}">
                         {{ csrf_field() }}
@@ -13,7 +20,7 @@
                             <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
                         </div>
                         <div class="form-group">
-                            <label for="description">Title</label>
+                            <label for="description">Description</label>
                             <textarea name="description" class="form-control" id="description">{{ old('description') }}</textarea>
                         </div>
                         <div class="form-group">
@@ -26,6 +33,7 @@
                     </form>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>

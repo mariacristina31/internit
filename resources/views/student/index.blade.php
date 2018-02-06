@@ -2,10 +2,19 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="container-fluid p-4">
         <div class="col-md-12">
+            <center>
+            <h3 class="mb-0">
+                <span class="text-primary">Manage Student</span>
+            </h3>
+            </center>
+            <hr>
+            <br/>
             <div class="form-group">
                 <a href="{{route('student.create')}}" class="btn btn-primary btn-lg">Create Student</a>
             </div>
+            <hr>
             <div class="panel panel-default">
                 <div class="panel-heading">Student list</div>
                 <div class="panel-body">
@@ -52,6 +61,7 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

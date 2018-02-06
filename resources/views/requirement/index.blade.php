@@ -1,11 +1,21 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
+            <br/>
+            <center>
+            <h3 class="mb-0">
+                <span class="text-primary">Manage Requirement</span>
+            </h3>
+            </center>
+            <hr>
+            <br/>
+            <div class="container-fluid p-4">
             <div class="form-group">
                 <a href="{{route('requirement.create')}}" class="btn btn-primary btn-lg">Create Requirement</a>
             </div>
+            <hr>
             <div class="panel panel-default">
                 <div class="panel-heading">Requirement</div>
                 <div class="panel-body">
@@ -36,6 +46,7 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

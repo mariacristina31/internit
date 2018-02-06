@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('style')
+@section('content')
 <style>
     .message-item {
         margin-bottom: 25px;
@@ -111,10 +111,9 @@
         max-height: 40px;
     }
 </style>
-@endsection
-@section('content')
-<div class="container">
-    <div class="row">
+
+<div class="container-fluid p-4">
+    <div class="col-md-12">
         <h2>Bulletin Board</h2>
     </div>
     @if(empty($posts->toArray()))

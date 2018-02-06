@@ -2,10 +2,20 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="container-fluid p-4">
         <div class="col-md-12">
+            <center>
+            <h3 class="mb-0">
+                <span class="text-primary">Manage Company</span>
+            </h3>
+            </center>
+            <hr>
+            <br/>
             <div class="form-group">
                 <a href="{{route('company.create')}}" class="btn btn-primary btn-lg">Create Company</a>
             </div>
+            <hr>
+
             <div class="panel panel-default">
                 <div class="panel-heading">Company</div>
                 <div class="panel-body">
@@ -34,7 +44,7 @@
                                     <td>{{ sizeof($company->students) }}</td>
                                     <td>{{ $company->user->is_verified == 1 ? 'true' : 'false' }}</td>
                                     <td>
-                                        <a href="{{route('company.students', $company->id)}}" class="btn btn-default">Students</a>
+                                        <a href="{{route('company.students', $company->id)}}" class="btn btn-primary">Students</a>
                                         <a href="{{route('company.edit', $company->id)}}" class="btn btn-info">Edit</a>
                                         <button type="submit" form="company-delete-{{$company->id}}" class="btn btn-danger">Delete</button>
                                         <form onsubmit="return confirm('Do you want to delete this data?');" id="company-delete-{{$company->id}}" action="{{route('company.destroy', $company->id)}}" method="POST">
@@ -48,6 +58,7 @@
                         </table>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>
