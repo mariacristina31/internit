@@ -44,7 +44,7 @@
                         <table class="table table-striped" id="datatable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Student Number</th>
                                     <th>First Name</th>
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
@@ -60,7 +60,7 @@
                             <tbody>
                                 @foreach($students as $student)
                                 <tr>
-                                    <td>{{ $student->id }}</td>
+                                    <td>{{ $student->student_number }}</td>
                                     <td>{{ $student->user->first_name }}</td>
                                     <td>{{ $student->user->middle_name }}</td>
                                     <td>{{ $student->user->last_name }}</td>

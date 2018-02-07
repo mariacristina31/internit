@@ -76,6 +76,12 @@
                     <a class="nav-link js-scroll-trigger" href="{{ route('company.index') }}">Company</a>
                   </li>
             @endif
+                   @if(auth()->user()->hasRole('Company'))
+  <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('company-students') }}">Students</a>
+                  </li>
+
+                                    @endif
             @if(auth()->user()->hasRole('Admin'))
                   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('user.index') }}">User Management</a>

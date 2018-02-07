@@ -3,7 +3,7 @@
     {{ method_field('PATCH') }}
     {{ csrf_field() }}
     <div class="form-group">
-        <label for="task">Task</label>
+        <label for="task"><strong>Task</strong></label>
         <textarea name="task" id="task" class="form-control" required></textarea>
     </div>
     <div class="form-group">

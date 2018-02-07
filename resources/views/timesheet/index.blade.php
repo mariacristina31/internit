@@ -2,12 +2,20 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="container-fluid p-4">
         <div class="col-md-12">
+            <center>
+            <h3 class="mb-0">
+                <span class="text-primary">Timesheet</span>
+            </h3>
+            </center>
+            <hr>
+            <br/>
             <div class="row">
                 <div class="col-sm-3">
                     <div class="well">
                         <center>
-                        <h1><div id="MyClockDisplay" class="clock"></div></h1>
+                        <h2><div id="MyClockDisplay" class="clock"></div></h2>
                         </center>
                     </div>
                 </div>
@@ -87,6 +95,8 @@
                 </div>
             </div>
         </div>
+        </div>
+
     </div>
 </div>
 @endsection

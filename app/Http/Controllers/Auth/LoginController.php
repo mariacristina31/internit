@@ -27,4 +27,29 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+
+    public function loginApi(Request $request)
+    {
+        $user = User::where('username', $request->username)->first();
+        if (empty($user)) {
+            return response()->json([
+                'error' => 'invalid_credentials',
+                'message' => 'The user credentials were incorrect.',
+            ], 400);
+        }
+
+        if (!\Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'error' => 'incorrect_password.',
+                'message' => 'Incorrect password.',
+            ], 400);
+        }
+        if ($user->role != "student") {
+            return response()->json([
+                'error' => 'invalid_user.',
+                'message' => 'User is not a student.',
+            ], 400);
+        }
+        return $user;
+    }
 }

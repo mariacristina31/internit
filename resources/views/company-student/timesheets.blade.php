@@ -2,7 +2,15 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="container-fluid p-4">
+            <div class="col-md-12">
+                <center>
+                <h3 class="mb-0">
+                <span class="text-primary">{{$student->user->first_name}} {{$student->user->last_name}} Timesheet</span>
+                </h3>
+                </center>
+                <hr>
+                <br/>
             <div class="panel panel-default">
                 <div class="panel-heading"><b>{{$student->user->first_name}} {{$student->user->last_name}}</b> - Timesheets</div>
                 <div class="panel-body">
@@ -69,6 +77,7 @@
                         </table>
                     </div>
                 </div>
+            </div>
             </div>
 
         </div>

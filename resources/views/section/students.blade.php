@@ -1,8 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
+            <br/>
+            <center>
+            <h3 class="mb-0">
+                <span class="text-primary">Section {{$section->name}} student list</span>
+            </h3>
+            </center>
+            <hr>
+            <br/>
             <div class="form-group">
                 <a href="{{route('section.index')}}" class="btn btn-primary btn-lg">Section List</a>
             </div>
@@ -13,7 +21,7 @@
                         <table class="table table-striped" id="datatable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Student Number</th>
                                     <th>First Name</th>
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
@@ -29,7 +37,7 @@
                             <tbody>
                                 @foreach($students as $student)
                                 <tr>
-                                    <td>{{ $student->id }}</td>
+                                    <td>{{ $student->student_number }}</td>
                                     <td>{{ $student->user->first_name }}</td>
                                     <td>{{ $student->user->middle_name }}</td>
                                     <td>{{ $student->user->last_name }}</td>
@@ -53,6 +61,8 @@
                     </div>
                 </div>
             </div>
+            </div>
+
         </div>
     </div>
 </div>

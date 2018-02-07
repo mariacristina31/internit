@@ -2,7 +2,15 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="container-fluid p-4">
+            <div class="col-md-12">
+                <center>
+                <h3 class="mb-0">
+                <span class="text-primary">Student List</span>
+                </h3>
+                </center>
+                <hr>
+                <br/>
             <div class="panel panel-default">
                 <div class="panel-heading">Student list</div>
                 <div class="panel-body">
@@ -10,7 +18,7 @@
                         <table class="table table-striped" id="datatable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Student Number</th>
                                     <th>First Name</th>
                                     <th>Middle Name</th>
                                     <th>Last Name</th>
@@ -25,7 +33,7 @@
                             <tbody>
                                 @foreach($students as $student)
                                 <tr>
-                                    <td>{{ $student->id }}</td>
+                                    <td>{{ $student->student_number }}</td>
                                     <td>{{ $student->user->first_name }}</td>
                                     <td>{{ $student->user->middle_name }}</td>
                                     <td>{{ $student->user->last_name }}</td>
@@ -63,6 +71,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>
