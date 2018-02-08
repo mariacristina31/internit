@@ -9,9 +9,13 @@
                     <form onsubmit="return confirm('Do you want to update this data?');" method="POST" action="{{ route('student.update', $student->id) }}">
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
+                            <div class="form-group">
+                            <label for="student_number">Student Number</label>
+                            <input id="student_number" type="text" class="form-control" name="student_number" value="{{ $student->student_number }}" required autofocus>
+                        </div>
                         <div class="form-group">
                             <label for="first_name">First Name</label>
-                            <input id="first_name" type="text" class="form-control" name="first_name" value="{{ $student->user->first_name }}" required autofocus>
+                            <input id="first_name" type="text" class="form-control" name="first_name" value="{{ $student->user->first_name }}" required>
                         </div>
                         <div class="form-group">
                             <label for="middle_name">Middle Name</label>
@@ -27,15 +31,6 @@
                                 <option {{ $student->section_id == null ? 'selected' : '' }} disabled>Select Section</option>
                                 @foreach($sections as $section)
                                 <option {{ $student->section_id == $section->id ? 'selected' : '' }} value="{{$section->id}}">{{$section->name}} ({{$section->school_year}})</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="company_id">Comapny</label>
-                            <select class="form-control" name="company_id" id="company_id">
-                                <option {{ $student->company_id == null ? 'selected' : '' }} value="">Select Company</option>
-                                @foreach($companies as $company)
-                                <option {{ $student->company_id == $company->id ? 'selected' : '' }} value="{{$company->id}}">{{$company->name}}</option>
                                 @endforeach
                             </select>
                         </div>

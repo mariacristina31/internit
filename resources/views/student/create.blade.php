@@ -8,9 +8,13 @@
                 <div class="panel-body">
                     <form onsubmit="return confirm('Do you want to save this data?');" method="POST" action="{{ route('student.store') }}">
                         {{ csrf_field() }}
+                              <div class="form-group">
+                            <label for="student_number">Student Number</label>
+                            <input id="student_number" type="text" class="form-control" name="student_number" value="{{ old('student_number') }}" required autofocus>
+                        </div>
                         <div class="form-group">
                             <label for="first_name">First Name</label>
-                            <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                            <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required>
                         </div>
                         <div class="form-group">
                             <label for="middle_name">Middle Name</label>
