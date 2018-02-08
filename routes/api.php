@@ -18,3 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', 'Auth\LoginController@loginApi');
+
+Route::post('/timesheet-start', 'TimesheetController@apiStoreTimesheet');
+
+Route::post('/timesheet-end', 'TimesheetController@apiUpdateTimesheet');
+
+Route::get('/timesheets', 'TimesheetController@apiTimesheet');

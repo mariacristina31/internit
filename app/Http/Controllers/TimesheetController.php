@@ -7,6 +7,24 @@ use Illuminate\Http\Request;
 
 class TimesheetController extends Controller
 {
+
+    public function apiTimesheet(Request $request)
+    {
+        $timesheets = User::find($request->user_id)->timesheets->sortByDesc('id');
+        // $timesheet_last = !empty(auth()->user()->timesheets->last()) ? auth()->user()->timesheets->last() : null;
+        return response()->json($timesheets, 200);
+    }
+
+    public function apiUpdateTimesheet(Request $request)
+    {
+        return response()->json(200);
+    }
+
+    public function apiStoreTimesheet(Request $request)
+    {
+        return response()->json(200);
+    }
+
     public function index()
     {
         $timesheets = auth()->user()->timesheets->sortByDesc('id');
