@@ -45,6 +45,14 @@ class LoginController extends Controller
                 'message' => 'Incorrect password.',
             ], 400);
         }
+
+        if (!$user->is_verified) {
+            return response()->json([
+                'error' => 'not_verified',
+                'message' => 'The user is not verified. Please login first in browser',
+            ], 400);
+        }
+
         if (!$user->hasRole('Student')) {
             return response()->json([
                 'error' => 'invalid_user.',
