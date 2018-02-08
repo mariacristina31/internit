@@ -60,6 +60,7 @@ class LoginController extends Controller
             ], 400);
         }
         $data = [
+            'id' => $user->id,
             'student_number' => $user->student->student_number,
             'name' => $user->first_name . ' ' . $user->last_name,
             'username' => $user->username,
