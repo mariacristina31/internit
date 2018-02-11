@@ -83,6 +83,10 @@
                   </li>
             @endif
                    @if(auth()->user()->hasRole('Company'))
+
+                     <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('company-timesheets') }}">Timesheets</a>
+                  </li>
   <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('company-students') }}">Students</a>
                   </li>

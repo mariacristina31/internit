@@ -59,7 +59,8 @@
                             </thead>
                             <tbody>
                                 @foreach($students as $student)
-                                <tr>
+
+                                <tr onclick="window.location='{{route('profile.check', $student->user->id)}}';" style="cursor: pointer;">
                                     <td>{{ $student->student_number }}</td>
                                     <td>{{ $student->user->first_name }}</td>
                                     <td>{{ $student->user->middle_name }}</td>

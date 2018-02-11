@@ -58,6 +58,11 @@ Route::group(['middleware' => 'auth'], function () {
             'as' => 'company-students',
         ]);
 
+        Route::get('/company-timesheets', [
+            'uses' => 'DashboardController@timesheets',
+            'as' => 'company-timesheets',
+        ]);
+
         Route::get('/student-timesheet/{id}', [
             'uses' => 'DashboardController@studentTimesheet',
             'as' => 'student-timesheet',
@@ -116,6 +121,11 @@ Route::group(['middleware' => 'auth', 'middleware' => ['role:Admin|Practicum']],
     Route::resource('user', 'UserController');
 
     Route::resource('student', 'StudentController');
+
+    Route::get('/profile-check/{id}', [
+        'uses' => 'ProfileController@profilecheck',
+        'as' => 'profile.check',
+    ]);
 
 });
 

@@ -3,6 +3,34 @@
 border-radius: 100%;
 width: 75px;
 height:  75px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
 </style>
 @extends('layouts.app')
 @section('content')
@@ -13,26 +41,26 @@ height:  75px;
         <div class="container-fluid p-4">
           <div class="my-auto">
             <div class="subheading mb-10">
-              <h3 class="text-primary">
+              <h2 class="text-primary">
               <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="images/icon2.png" alt="">
               <b>
               Online Internship Monitoring System
               </b>
-              </h3>
+              </h2>
             </div><center>
                       <li class="list-inline-item">
-                <a href="{{route('post.create')}}">
-                  <img src="images/update_profile.png" class="one" alt="">
+                <a class="btn btn-info btn-circle btn-xl " href="#">
+                  <i style="margin-top: 10px;" class="fa fa-user"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="{{route('post.create')}}">
-                  <img src="images/chart.png" class="one" alt="">
+                  <a class="btn btn-info btn-circle btn-xl " href="#">
+                    <i style="margin-top: 10px;" class="fa fa-cog fa-spin"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                <a href="{{route('post.create')}}">
-                  <img src="images/timesheet.png" class="one" alt="">
+                  <a class="btn btn-info btn-circle btn-xl " href="#">
+                  <i style="margin-top: 10px;" class="fa fa-pie-chart fa-spin"></i>
                 </a>
               </li></center>
               <hr>
@@ -71,29 +99,29 @@ height:  75px;
             @endif
             <div class="subheading mb-5">
               @if(auth()->user()->hasRole('Admin'))
-              <p class="text-primary">Head Admin ·<br/>
-                College of Computer Studies · Our Lady of Fatima University ·
+              <p class="text-primary">{{auth()->user()->roles()->first()->name}}<br/>
+                College of Computer Studies · Our Lady of Fatima University
                 @endif
                 @if(auth()->user()->hasRole('Practicum'))
-                Practicum Coordinator· Our Lady of Fatima University · {{ Auth::user()->Contact }} ·
+                Practicum Coordinator· Our Lady of Fatima University · {{ Auth::user()->contact }}
                 @endif
                 @if(auth()->user()->hasRole('Practicum'))
-                Student· Our Lady of Fatima University · {{ Auth::user()->Contact }} ·
+                Student· Our Lady of Fatima University · {{ Auth::user()->contact }}
                 @endif
                 @if(auth()->user()->hasRole('Student'))
-                Student Profile· Our Lady of Fatima University ·
+                Student Profile· Our Lady of Fatima University
                 @endif
                 <br/>
-                {{ Auth::user()->contact }} ·
+                {{ Auth::user()->contact }}
                 <a href="mailto:name@email.com">{{ Auth::user()->email }}</a>
               </div>
               <p class="mb-5">
+              {{--   InternIT. It is a Online Internship Monitoring System. That shu shu shu
                 InternIT. It is a Online Internship Monitoring System. That shu shu shu
                 InternIT. It is a Online Internship Monitoring System. That shu shu shu
                 InternIT. It is a Online Internship Monitoring System. That shu shu shu
                 InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
+                InternIT. It is a Online Internship Monitoring System. That shu shu shu --}}
               </p>
             </div>
           </div>
