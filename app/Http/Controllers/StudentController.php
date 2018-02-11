@@ -15,7 +15,8 @@ class StudentController extends Controller
     {
         $students = Student::all();
         $sections = Section::all();
-        return view('student.index', compact('students', 'sections'));
+        $companies = Company::all();
+        return view('student.index', compact('students', 'sections', 'companies'));
     }
 
     public function create()

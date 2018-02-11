@@ -34,5 +34,6 @@ class UsersTableSeeder extends Seeder
         $practicum->is_verified = true;
         $practicum->save();
         $practicum->roles()->attach($role_practicum);
+
     }
 }
