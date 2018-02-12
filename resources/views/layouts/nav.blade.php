@@ -1,3 +1,10 @@
+<style type="text/css">
+    .one{
+        border-radius: 100%;
+        width: 100px;
+        height:  75px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -18,11 +25,12 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top text-primary" style="background-color: #113672">
             <div class="container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
+
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
@@ -31,9 +39,9 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'OIMS') }}
-                    </a>
+                    {{-- <a href="{{ url('/') }}">
+                        <img src="images/icon2.png" class="one" alt="">
+                    </a> --}}
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">

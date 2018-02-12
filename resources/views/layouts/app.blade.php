@@ -48,6 +48,12 @@
           @else
             @if(auth()->user()->hasRole(['Student']))
                 <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('dashboard') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="{{ route('profile') }}">Profile</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{ route('timesheet.index') }}">Timesheet</a>
                 </li>
             @endif
