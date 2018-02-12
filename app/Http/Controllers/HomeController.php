@@ -25,7 +25,7 @@ class HomeController extends Controller
             'to' => empty($data['to']) ? $data['from'] : $data['to'],
         );
         $timesheets = Timesheet::where('user_id', auth()->user()->id)->whereBetween('created_at', array($date['from'], $date['to']))->get();
-        return view('report', compact('timesheets'));
+        return view('report', compact('timesheets', 'date'));
     }
 
     public function information()
