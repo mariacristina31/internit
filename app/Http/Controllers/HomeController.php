@@ -6,6 +6,8 @@ use App\Company;
 use App\Http\Requests\InformationRequest;
 use App\Requirement;
 use App\Student;
+use App\Timesheet;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -13,6 +15,18 @@ class HomeController extends Controller
     {
         $companies = Company::all();
         return view('student-requirements.req-company', compact('companies'));
+    }
+
+    public function reportTimesheet(Request $request)
+    {
+        $data = $request->all();
+        $date = array(
+            'from' => $data['from'],
+            'to' => empty($data['to']) ? $data['from'] : $data['to'],
+        );
+        $timesheets = Timesheet::where('user_id', auth()->user()->id)->whereBetween('created_at', array($date['from'], $date['to']))->get();
+
+        return view('report', compact('timesheets'));
     }
 
     public function information()

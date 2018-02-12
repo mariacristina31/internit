@@ -10,6 +10,8 @@
             </h3>
             </center>
             <hr>
+    @include('includes._message')
+
             <br/>
             <div class="form-group">
                 <strong><h3>Import Student Format: *CSV</h3><strong></strong>

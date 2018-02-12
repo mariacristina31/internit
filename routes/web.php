@@ -51,6 +51,11 @@ Route::group(['middleware' => 'auth'], function () {
             'middleware' => 'student.is-verified',
         ]);
 
+        Route::get('/timesheet-report', [
+            'uses' => 'HomeController@reportTimesheet',
+            'as' => 'report.timesheet',
+        ]);
+
         Route::get('/form-information', [
             'uses' => 'HomeController@information',
             'as' => 'requirements.information',

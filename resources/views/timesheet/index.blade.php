@@ -35,6 +35,30 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <div class="row" >
+                <div class="col-md-6" style="background-color: #eee; border: 2px solid #ccc">
+                            <h3>Reports</h3>
+                            <form action="{{route('report.timesheet')}}" method="get" target="_blank">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label class="control-label" for="from">From:</label>
+                                    <input type="date" name="from" class="form-control" value="{{ date('Y-m-d') }}">
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="control-label" for="to">To:</label>
+                                    <input type="date" name="to" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <button class="form-control btn btn-primary">Print</button>
+                                </div>
+                            </div>
+                        </form>
+                </div>
+            </div>
+            <br>
+
             <div class="panel panel-default">
                 <div class="panel-heading">Timesheets</div>
                 <div class="panel-body">

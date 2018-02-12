@@ -80,36 +80,44 @@ class StudentController extends Controller
 
     public function importCsv(Request $request)
     {
+
         if ($request->hasFile('csvs')) {
-            $path = $request->file('csvs')->getRealPath();
-            $data = \Excel::load($path)->get();
-            $role_student = Role::where('name', 'Student')->first();
-            if ($data->count()) {
-                foreach ($data as $key => $value) {
-                    $checker = Student::where('student_number', $value->student_number)->first();
-                    if (empty($checker)) {
-                        $code = 'oims-' . mt_rand(5, 99999);
-                        $user_data = [
-                            'first_name' => $value->first_name,
-                            'last_name' => $value->last_name,
-                            'middle_name' => $value->middle_name,
-                            'username' => $code,
-                            'password' => bcrypt($code),
-                        ];
-                        $user = new User;
-                        $user->fill($user_data)->save();
-                        $user->roles()->attach($role_student);
-                        $section = Section::where('name', $value->section)->where('school_year', $value->school_year)->first();
-                        $student = new Student;
-                        $student_data = [
-                            'user_id' => $user->id,
-                            'student_number' => (string) $value->student_number,
-                            'section_id' => !empty($section) ? $section->id : null,
-                        ];
-                        $student->fill($student_data)->save();
+            $filesource = $request->file('csvs');
+            $fileExtension = $filesource->getClientOriginalExtension();
+            if ($fileExtension === 'csv') {
+                $path = $request->file('csvs')->getRealPath();
+                $data = \Excel::load($path)->get();
+                $role_student = Role::where('name', 'Student')->first();
+                if ($data->count()) {
+                    foreach ($data as $key => $value) {
+
+                        $checker = Student::where('student_number', $value->student_number)->first();
+                        if (empty($checker)) {
+                            $code = 'oims-' . mt_rand(5, 99999);
+                            $user_data = [
+                                'first_name' => $value->first_name,
+                                'last_name' => $value->last_name,
+                                'middle_name' => $value->middle_name,
+                                'username' => $code,
+                                'password' => bcrypt($code),
+                            ];
+                            $user = new User;
+                            $user->fill($user_data)->save();
+                            $user->roles()->attach($role_student);
+                            $section = Section::where('name', $value->section)->where('school_year', $value->school_year)->first();
+                            $student = new Student;
+                            $student_data = [
+                                'user_id' => $user->id,
+                                'student_number' => (string) $value->student_number,
+                                'section_id' => !empty($section) ? $section->id : null,
+                            ];
+                            $student->fill($student_data)->save();
+                        }
                     }
+                    return redirect()->back();
                 }
-                return redirect()->back();
+            } else {
+                return redirect()->back()->withErrors('It must be in CSV format');
             }
         }
         return redirect()->back();
