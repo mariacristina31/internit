@@ -23,6 +23,26 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'profile',
     ]);
 
+    Route::get('/profile-update-pass', [
+        'uses' => 'ProfileController@pup',
+        'as' => 'profile-update-pass',
+    ]);
+
+    Route::get('/profile-update', [
+        'uses' => 'ProfileController@pu',
+        'as' => 'profile-update',
+    ]);
+
+    Route::post('/profile-update-pass', [
+        'uses' => 'ProfileController@pupx',
+        'as' => 'profile-update-pass',
+    ]);
+
+    Route::post('/profile-update', [
+        'uses' => 'ProfileController@pux',
+        'as' => 'profile-update',
+    ]);
+
     Route::group(['middleware' => ['role:Student']], function () {
 
         Route::get('/form-company', [

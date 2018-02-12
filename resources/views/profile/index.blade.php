@@ -58,16 +58,6 @@ height:  75px;
 
               </script>
             </div><center>
-                      <li class="list-inline-item">
-                <a class="btn btn-info btn-circle btn-xl " href="#">
-                  <i style="margin-top: 10px;" class="fa fa-user"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                  <a class="btn btn-info btn-circle btn-xl " href="#">
-                    <i style="margin-top: 10px;" class="fa fa-cog fa-spin"></i>
-                </a>
-              </li>
               <li class="list-inline-item">
                   <a id="chart" class="btn btn-info btn-circle btn-xl " href="#">
                   <i style="margin-top: 10px;" class="fa fa-pie-chart fa-spin"></i>
@@ -75,37 +65,15 @@ height:  75px;
               </li></center>
               <hr>
               <hr>
-            <h2 class="mb-0">{{ $auth->first_name }}
-            <span class="text-primary">{{ $auth->last_name }}</span>
-            </h2>
+
+            <h2 class="mb-0">{{ $auth->first_name }} {{ $auth->last_name }}</h2>
 
             <div class="subheading mb-5">
-              @if($auth->hasRole('Admin'))
-              <p class="text-primary">{{$auth->roles()->first()->name}}<br/>
-                College of Computer Studies · Our Lady of Fatima University
-                @endif
-                @if($auth->hasRole('Practicum'))
-                Practicum Coordinator· Our Lady of Fatima University · {{ $auth->contact }}
-                @endif
-                @if($auth->hasRole('Practicum'))
-                Student· Our Lady of Fatima University · {{ $auth->contact }}
-                @endif
-                @if($auth->hasRole('Student'))
-                Student Profile· Our Lady of Fatima University
-                @endif
-                <br/>
-                {{ $auth->contact }}
-                <a href="mailto:name@email.com">{{ $auth->email }}</a>
+                <p class="text-primary">College of Computer Studies · Our Lady of Fatima University</p>
+                <p class="text-primary">{{ $auth->roles()->first()->name }}</p>
+                <p class="text-primary">{{ $auth->contact }} · <a href="mailto:name@email.com">{{ $auth->email }}</a></p>
               </div>
-              <p class="mb-5">
-              {{--   InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu --}}
-              </p>
-                        @if($auth->hasRole(['Student']))
+              @if($auth->hasRole(['Student']))
                 <script>
                   var rtime = {{$rendered_total}};
                 window.onload = function () {

@@ -36,7 +36,9 @@ height:  75px;
 @section('content')
 <div class="container">
   <div class="row">
+
     <div class="col-md-12">
+
       <div class="row">
         <div class="container-fluid p-4">
           <div class="my-auto">
@@ -49,25 +51,27 @@ height:  75px;
               </h2>
             </div><center>
                       <li class="list-inline-item">
-                <a class="btn btn-info btn-circle btn-xl " href="#">
+                <a class="btn btn-info btn-circle btn-xl " href="{{route('profile-update')}}">
                   <i style="margin-top: 10px;" class="fa fa-user"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                  <a class="btn btn-info btn-circle btn-xl " href="#">
-                    <i style="margin-top: 10px;" class="fa fa-cog fa-spin"></i>
+                  <a class="btn btn-info btn-circle btn-xl " href="{{route('profile-update-pass')}}">
+                    <i style="margin-top: 10px;" class="fa fa-lock"></i>
                 </a>
               </li>
+              @if(!auth()->user()->hasRole('Admin'))
               <li class="list-inline-item">
                   <a class="btn btn-info btn-circle btn-xl " href="#">
                   <i style="margin-top: 10px;" class="fa fa-pie-chart fa-spin"></i>
                 </a>
-              </li></center>
+              </li>
+            @endif</center>
               <hr>
               <hr>
-            <h2 class="mb-0">{{ Auth::user()->first_name }}
-            <span class="text-primary">{{ Auth::user()->last_name }}</span>
-            </h2>
+    @include('includes._message')
+
+            <h2 class="mb-0">{{ $auth->first_name }} {{ $auth->last_name }}</h2>
             @if(auth()->user()->hasRole(['Student']))
                 <script>
                   var rtime = {{$rendered_total}};
@@ -98,31 +102,10 @@ height:  75px;
                 <script src="../../canvasjs.min.js"></script>
             @endif
             <div class="subheading mb-5">
-              @if(auth()->user()->hasRole('Admin'))
-              <p class="text-primary">{{auth()->user()->roles()->first()->name}}<br/>
-                College of Computer Studies · Our Lady of Fatima University
-                @endif
-                @if(auth()->user()->hasRole('Practicum'))
-                Practicum Coordinator· Our Lady of Fatima University · {{ Auth::user()->contact }}
-                @endif
-                @if(auth()->user()->hasRole('Practicum'))
-                Student· Our Lady of Fatima University · {{ Auth::user()->contact }}
-                @endif
-                @if(auth()->user()->hasRole('Student'))
-                Student Profile· Our Lady of Fatima University
-                @endif
-                <br/>
-                {{ Auth::user()->contact }}
-                <a href="mailto:name@email.com">{{ Auth::user()->email }}</a>
+                 <p class="text-primary">College of Computer Studies · Our Lady of Fatima University</p>
+                <p class="text-primary">{{ $auth->roles()->first()->name }}</p>
+                <p class="text-primary">{{ $auth->contact }} · <a href="mailto:name@email.com">{{ $auth->email }}</a></p>
               </div>
-              <p class="mb-5">
-              {{--   InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu --}}
-              </p>
             </div>
           </div>
         </div>

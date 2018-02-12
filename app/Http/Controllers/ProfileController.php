@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePasswordRequest;
 use App\User;
+use Illuminate\Http\Request;
+use Image;
+use Session;
 
 class ProfileController extends Controller
 {
@@ -59,6 +63,49 @@ class ProfileController extends Controller
         $rendered_total = sprintf("%d:%d", $total_hours, $exploded_time[1]);
         $rendered_total = (int) $rendered_total;
         return view('profile.index', compact('auth', 'rendered_total'));
+    }
+
+    public function pupx(ChangePasswordRequest $request)
+    {
+        $data = $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $user = User::find(auth()->user()->id);
+        $user->update($data);
+        Session::flash('flash_message', 'Successfuly changed password');
+        return redirect()->route('profile');
+    }
+
+    public function pux(Request $request)
+    {
+        $data = $request->all();
+        if ($request->has('picture')) {
+            $picture = $request->file('picture');
+            $filename = time() . '.' . $picture->getClientOriginalExtension();
+            $data['picture'] = $filename;
+            $background = Image::canvas(480, 360);
+            $image = Image::make($picture)->resize(480, 360, function ($c) {
+                $c->aspectRatio();
+                $c->upsize();
+            });
+            $background->insert($image, 'center');
+            $background->save(public_path('images/' . $filename));
+        }
+        $user = User::find(auth()->user()->id);
+        $user->update($data);
+        if ($user->hasRole('Student')) {
+            $user->student->update($data);
+        }
+        return redirect()->back();
+    }
+
+    public function pu()
+    {
+        return view('x.profile');
+    }
+
+    public function pup()
+    {
+        return view('x.pass');
     }
 
 }
