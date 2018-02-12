@@ -86,7 +86,7 @@ class StudentController extends Controller
             $role_student = Role::where('name', 'Student')->first();
             if ($data->count()) {
                 foreach ($data as $key => $value) {
-                    $checker = User::where('student_number', $value->student_number)->first();
+                    $checker = Student::where('student_number', $value->student_number)->first();
                     if (empty($checker)) {
                         $code = 'oims-' . mt_rand(5, 99999);
                         $user_data = [
