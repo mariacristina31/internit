@@ -45,9 +45,7 @@
                             <thead>
                                 <tr>
                                     <th>Student Number</th>
-                                    <th>First Name</th>
-                                    <th>Middle Name</th>
-                                    <th>Last Name</th>
+                                    <th>Name</th>
                                     <th>Username</th>
                                     <th>Section</th>
                                     <th>Company</th>
@@ -59,11 +57,14 @@
                             </thead>
                             <tbody>
                                 @foreach($students as $student)
+
                                 <tr>
                                     <td>{{ $student->student_number }}</td>
-                                    <td>{{ $student->user->first_name }}</td>
-                                    <td>{{ $student->user->middle_name }}</td>
-                                    <td>{{ $student->user->last_name }}</td>
+                                    <td>
+                                        <a href="{{route('profile.check', $student->user->id)}}">
+                                        {{ $student->user->last_name }} {{ $student->user->first_name }} {{ $student->user->middle_name }}
+                                        <a/>
+                                    </td>
                                     <td>{{ $student->user->username }}</td>
                                     <td>{{ !empty($student->section) ? $student->section->name. ' | '. $student->section->school_year : '' }}</td>
                                     <td>{{ !empty($student->company) ? $student->company->name : '' }}</td>

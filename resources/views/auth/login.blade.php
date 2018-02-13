@@ -10,7 +10,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 <body style="background: url(images/bg.jpg); margin: 0; padding: 0; background-size: cover; font-family: sans-serif;">
     <div class="login-box">
-    <img src="{{ asset('images/icon2.png') }}" class="avatar">
+        <style>
+#example1 {
+    border: 2px solid #666;
+}
+</style>
+    <img src="{{ asset('images/icon2.png') }}" class="avatar img-responsive" id="example1">
         <h1>Login</h1>
             <form class="form-horizontal" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}

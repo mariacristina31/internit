@@ -14,4 +14,9 @@ class Timesheet extends Model
         'duration',
         'is_checked',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

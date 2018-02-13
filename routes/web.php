@@ -23,6 +23,26 @@ Route::group(['middleware' => 'auth'], function () {
         'as' => 'profile',
     ]);
 
+    Route::get('/profile-update-pass', [
+        'uses' => 'ProfileController@pup',
+        'as' => 'profile-update-pass',
+    ]);
+
+    Route::get('/profile-update', [
+        'uses' => 'ProfileController@pu',
+        'as' => 'profile-update',
+    ]);
+
+    Route::post('/profile-update-pass', [
+        'uses' => 'ProfileController@pupx',
+        'as' => 'profile-update-pass',
+    ]);
+
+    Route::post('/profile-update', [
+        'uses' => 'ProfileController@pux',
+        'as' => 'profile-update',
+    ]);
+
     Route::group(['middleware' => ['role:Student']], function () {
 
         Route::get('/form-company', [
@@ -61,6 +81,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/company-students', [
             'uses' => 'DashboardController@companyStudents',
             'as' => 'company-students',
+        ]);
+
+        Route::get('/company-timesheets', [
+            'uses' => 'DashboardController@timesheets',
+            'as' => 'company-timesheets',
         ]);
 
         Route::get('/student-timesheet/{id}', [
@@ -121,6 +146,11 @@ Route::group(['middleware' => 'auth', 'middleware' => ['role:Admin|Practicum']],
     Route::resource('user', 'UserController');
 
     Route::resource('student', 'StudentController');
+
+    Route::get('/profile-check/{id}', [
+        'uses' => 'ProfileController@profilecheck',
+        'as' => 'profile.check',
+    ]);
 
 });
 

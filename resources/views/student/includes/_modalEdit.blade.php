@@ -32,6 +32,15 @@
                             @endforeach
                         </select>
                     </div>
+                         <div class="form-group">
+                            <label for="company_id">Company</label>
+                            <select class="form-control" name="company_id" id="company_id" required>
+                                <option {{ $student->company_id == null ? 'selected' : '' }} disabled>Select Company</option>
+                                @foreach($companies as $company)
+                                <option {{ $student->company_id == $company->id ? 'selected' : '' }} value="{{$company->id}}">{{$company->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success form-control">Save</button>
                     </div>

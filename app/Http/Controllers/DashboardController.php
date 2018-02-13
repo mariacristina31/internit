@@ -32,6 +32,18 @@ class DashboardController extends Controller
         }
     }
 
+    public function timesheets()
+    {
+        $students = Company::where('user_id', auth()->user()->id)->first()->students;
+        $timesheets = [];
+        foreach ($students as $student) {
+            foreach ($student->user->timesheets as $shit) {
+                $timesheets[] = $shit;
+            }
+        }
+        return view('company.timesheet', compact('timesheets'));
+    }
+
     public function updateStudentTimesheet($id)
     {
         $timesheet = Timesheet::find($id);
