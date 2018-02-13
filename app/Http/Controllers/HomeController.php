@@ -20,6 +20,13 @@ class HomeController extends Controller
         return view('student-requirements.req-information');
     }
 
+    /*public function viewdocs()
+    {
+    $student = Student::find(auth()->user()->student->id)
+    $requirements = Requirement::all();
+    return view('student-requirements.req-documents', compact('user_reqs', 'requirements'));
+    }*/
+
     public function documents()
     {
         $user_reqs = auth()->user()->requirements;

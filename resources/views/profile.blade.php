@@ -87,14 +87,6 @@ height:  75px;
                 {{ Auth::user()->contact }} ·
                 <a href="mailto:name@email.com">{{ Auth::user()->email }}</a>
               </div>
-              <p class="mb-5">
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-                InternIT. It is a Online Internship Monitoring System. That shu shu shu
-              </p>
             </div>
           </div>
         </div>

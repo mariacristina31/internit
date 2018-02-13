@@ -48,6 +48,11 @@ Route::group(['middleware' => 'auth'], function () {
             'as' => 'requirements.update-student',
             'middleware' => 'student.is-verified',
         ]);
+        Route::patch('/update-student-requirements', [
+            'uses' => 'HomeController@updateStudent',
+            'as' => 'requirements.update-student',
+            'middleware' => 'student.is-verified',
+        ]);
 
     });
 
