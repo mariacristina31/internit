@@ -70,9 +70,27 @@ height:  75px;
               <hr>
               <hr>
     @include('includes._message')
-
-            <h2 class="mb-0">{{ $auth->first_name }} {{ $auth->last_name }}</h2>
+          <center>
+            <h1 class="mb-0">{{ $auth->first_name }} {{ $auth->last_name }}</h1>
+             @if(auth()->user()->hasRole(['Admin']))
+              <div class="subheading mb-5">
+                 <p class="text-primary">{{ $auth->roles()->first()->name }} · College of Computer Studies · Our Lady of Fatima University</p>
+                <p class="text-primary">{{ $auth->contact }}</p>
+                <p class="text-primary"><a href="mailto:name@email.com">{{ $auth->email }}</a></p>
+              @endif
             @if(auth()->user()->hasRole(['Student']))
+            <div class="subheading mb-5">
+                 <p class="text-primary">{{ $auth->roles()->first()->name }} · College of Computer Studies · Our Lady of Fatima University</p>
+                Address : <p class="text-primary">{{ auth()->user()->student->address }}</p>
+                Contact : <p class="text-primary">{{ $auth->contact }}</p>
+                Email : <p class="text-primary"><a href="mailto:name@email.com">{{ $auth->email }}</a></p>
+                Birthdate : <p class="text-primary">{{ auth()->user()->student->birthdate }}</p>
+                Gender : <p class="text-primary">{{ auth()->user()->student->sex }}</p>
+                Gurdian Name<p class="text-primary">{{ auth()->user()->student->guardian_name }}</p>
+                Gurdian Contact<p class="text-primary">{{ auth()->user()->student->guardian_contact }}</p>
+              </div>
+          </center>
+
                 <script>
                   var rtime = {{$rendered_total}};
                 window.onload = function () {
@@ -101,11 +119,6 @@ height:  75px;
                 <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
                 <script src="../../canvasjs.min.js"></script>
             @endif
-            <div class="subheading mb-5">
-                 <p class="text-primary">College of Computer Studies · Our Lady of Fatima University</p>
-                <p class="text-primary">{{ $auth->roles()->first()->name }}</p>
-                <p class="text-primary">{{ $auth->contact }} · <a href="mailto:name@email.com">{{ $auth->email }}</a></p>
-              </div>
             </div>
           </div>
         </div>

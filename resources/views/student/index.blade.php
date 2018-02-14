@@ -16,8 +16,8 @@
                 <p>Fields:</p>
                 <ul>
                     <li>student_number</li>
-                    <li>first_name</li>
                     <li>last_name</li>
+                    <li>first_name</li>
                     <li>middle_name</li>
                     <li>section</li>
                     <li>school_year</li>

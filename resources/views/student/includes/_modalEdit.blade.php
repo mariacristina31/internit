@@ -12,6 +12,10 @@
                     {{ method_field('PATCH') }}
                     {{ csrf_field() }}
                     <div class="form-group">
+                        <label for="student_number">Student Number</label>
+                        <input id="student_number" type="text" class="form-control" name="student_number" value="{{ $student->user->student_number }}" required autofocus>
+                    </div>
+                    <div class="form-group">
                         <label for="first_name">First Name</label>
                         <input id="first_name" type="text" class="form-control" name="first_name" value="{{ $student->user->first_name }}" required autofocus>
                     </div>

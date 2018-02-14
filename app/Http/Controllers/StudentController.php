@@ -32,6 +32,7 @@ class StudentController extends Controller
         $role_student = Role::where('name', 'Student')->first();
         $user = new User;
         $user_data = [
+            'student_number' => $request->student_number,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'middle_name' => $request->middle_name,

@@ -56,15 +56,15 @@
                         <div class="col-xs-6">
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
-                                <input id="first_name" type="text" class="form-control" name="first_name" value="{{ auth()->user()->first_name }}" required autofocus>
+                                <input id="first_name" type="text" class="form-control" name="first_name" value="{{ auth()->user()->first_name }}" disabled autofocus>
                             </div>
                             <div class="form-group">
                                 <label for="middle_name">Middle Name</label>
-                                <input id="middle_name" type="text" class="form-control" name="middle_name" value="{{ auth()->user()->middle_name }}">
+                                <input id="middle_name" type="text" class="form-control" name="middle_name" value="{{ auth()->user()->middle_name }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
-                                <input id="last_name" type="text" class="form-control" name="last_name" value="{{ auth()->user()->last_name }}" required>
+                                <input id="last_name" type="text" class="form-control" name="last_name" value="{{ auth()->user()->last_name }}" required disabled>
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>

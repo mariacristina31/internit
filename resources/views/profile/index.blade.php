@@ -65,14 +65,13 @@ height:  75px;
               </li></center>
               <hr>
               <hr>
-
-            <h2 class="mb-0">{{ $auth->first_name }} {{ $auth->last_name }}</h2>
-
+            <center>
+            <h1 class="mb-0">{{ $auth->first_name }} {{ $auth->last_name }}</h1>
             <div class="subheading mb-5">
-                <p class="text-primary">College of Computer Studies · Our Lady of Fatima University</p>
-                <p class="text-primary">{{ $auth->roles()->first()->name }}</p>
-                <p class="text-primary">{{ $auth->contact }} · <a href="mailto:name@email.com">{{ $auth->email }}</a></p>
+                 <p class="text-primary">{{ $auth->roles()->first()->name }} · College of Computer Studies · Our Lady of Fatima University</p>
               </div>
+          </center>
+
               @if($auth->hasRole(['Student']))
                 <script>
                   var rtime = {{$rendered_total}};
