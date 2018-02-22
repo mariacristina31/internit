@@ -55,8 +55,8 @@
                         <input type="hidden" name="route" value="{{\Route::currentRouteName()}}">
                         @foreach($requirements as $key => $value)
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="attachment">{{$value->name}}</label>
-                            <div class="col-sm-10">
+                            <label class="control-label col-sm-12" for="attachment">{{$value->name}}</label>
+                            <div class="col-sm-12">
                                 <input id="attachment" type="file" class="form-control" name="attachment[{{$value->id}}]" value="{{ old('attachment') }}">
                             </div>
                         </div>

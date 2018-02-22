@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-xs-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary form-control">Next</button>
+                                <button type="submit" class="btn btn-success form-control">Next</button>
                             </div>
                         </div>
                     </form>
