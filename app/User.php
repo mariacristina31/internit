@@ -18,11 +18,13 @@ class User extends Authenticatable
         'picture',
         'email',
         'contact',
+        'reset',
         'password',
         'is_verified',
     ];
 
     protected $hidden = [
+        'reset',
         'password',
         'remember_token',
     ];
