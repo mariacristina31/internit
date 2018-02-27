@@ -74,6 +74,7 @@
                                     <td>{{ $student->user->contact }}</td>
                                     <td>{{ $student->user->is_verified == 1 ? 'true' : 'false' }}</td>
                                     <td>
+                                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#xxx-{{$student->id}}">Files</a>
                                           <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpost-{{$student->id}}">
                                             Edit
                                             </button>
@@ -84,6 +85,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @include('student.includes._tinay')
                                 @include('student.includes._modalEdit')
 
                                 @endforeach

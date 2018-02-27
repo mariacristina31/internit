@@ -8,6 +8,7 @@ use App\Requirement;
 use App\Student;
 use App\Timesheet;
 use Illuminate\Http\Request;
+use Session;
 
 class HomeController extends Controller
 {
@@ -42,8 +43,9 @@ class HomeController extends Controller
 
     public function documents()
     {
-        $user_reqs = auth()->user()->requirements;
+        $user_reqs = auth()->user()->student->requirements->pluck('id')->toArray();
         $requirements = Requirement::all();
+
         return view('student-requirements.req-documents', compact('user_reqs', 'requirements'));
     }
 
@@ -74,16 +76,47 @@ class HomeController extends Controller
                     return redirect()->route('requirements.documents');
                 }
             }
-            $data = [
-                'is_verified' => true,
-            ];
+            // $data = [
+            //     'is_verified' => true,
+            // ];
             $student_data = [
                 'remaining_time' => env('OJT_HOURS'),
             ];
             $student->update($student_data);
-            $student->user->update($data);
+            // $student->user->update($data);
             return redirect()->route('dashboard');
         }
 
+    }
+
+    public function revokeReq(Request $request)
+    {
+        if (empty($request->attachment)) {
+            return back()->withErrors('Error revoke');
+        }
+        $student = Student::find($request->student_id);
+        foreach ($request->attachment as $key => $value) {
+            $student->requirements()->detach($key);
+        }
+        Session::flash('flash_message', 'Successfuly revoke requirements');
+        return back();
+    }
+
+    public function verifyStudent(Request $request)
+    {
+        $requirements = Requirement::all();
+        $student = Student::find($request->student_id);
+        foreach ($requirements as $key => $value) {
+            $hasRequirement = $student->requirements()->where('requirement_id', $value->id)->exists();
+            if (!$hasRequirement) {
+                return back()->withErrors('Error when verifying. Incommplete Requirements');
+            }
+        }
+        $data = [
+            'is_verified' => true,
+        ];
+        $student->user->update($data);
+        Session::flash('flash_message', 'Student successfuly verified');
+        return back();
     }
 }

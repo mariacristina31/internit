@@ -55,9 +55,9 @@
                         <div class="form-group">
                             <label for="company_id">Company</label>
                             <select class="form-control" name="company_id" id="company_id" required>
-                                <option {{ old('company_id') === null ? 'selected' : '' }} value="">Select Company</option>
+                                <option {{ auth()->user()->student->company_id == null ? 'selected' : '' }} value="">Select Company</option>
                                 @foreach($companies as $company)
-                                <option {{ old('company_id') === $company->id ? 'selected' : '' }} value="{{$company->id}}">{{$company->name}}</option>
+                                <option {{ auth()->user()->student->company_id == $company->id ? 'selected' : '' }} value="{{$company->id}}">{{$company->name}}</option>
                                 @endforeach
                             </select>
                         </div>
