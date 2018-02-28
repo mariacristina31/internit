@@ -177,6 +177,15 @@ Route::group(['middleware' => 'auth', 'middleware' => ['role:Admin']], function 
 
 Route::group(['middleware' => 'auth', 'prefix' => 'section', 'middleware' => ['role:Admin|Practicum']], function () {
 
+    Route::post('/revoke-req', [
+        'uses' => 'HomeController@revokeReq',
+        'as' => 'revoke.req',
+    ]);
+
+    Route::post('/verify-req', [
+        'uses' => 'HomeController@verifyStudent',
+        'as' => 'verifystudent',
+    ]);
     Route::get('/{section}/students', [
         'uses' => 'SectionController@students',
         'as' => 'section.students',
