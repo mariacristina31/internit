@@ -11,7 +11,7 @@
                 <form enctype="multipart/form-data" onsubmit="return confirm('Do you want to save this data?');" method="POST" action="{{ route('post.store') }}">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for=title" class="col-form-label">Title:</label>
+                        <label for="title" class="col-form-label">Title:</label>
                         <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" required autofocus>
                     </div>
                     <div class="form-group">

@@ -132,6 +132,11 @@ Route::group(['middleware' => 'auth', 'middleware' => ['role:Student', 'requirem
 
     Route::resource('timesheet', 'TimesheetController');
 
+    Route::post('/manual-add-time', [
+        'uses' => 'TimesheetController@manualAddTime',
+        'as' => 'manual.add.time',
+    ]);
+
     Route::get('/ojt-form', [
         'uses' => 'ProfileController@ojtForm',
         'as' => 'ojt.form',

@@ -12,5 +12,7 @@
 </form>
 @endif
 @if(!empty($timesheet_last->time_in) && !empty($timesheet_last->time_out))
-<h2>Attendance Submitted</h2>
+<br>
+<br>
+<h3  style="color: green;">Attendance Submitted</h3>
 @endif
