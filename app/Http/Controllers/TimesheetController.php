@@ -85,7 +85,10 @@ class TimesheetController extends Controller
     {
         $xxx = \DateTime::createFromFormat('Y-m-d\TH:i', $request->time_in);
         $x_time_in = $xxx->format('Y-m-d');
-        $timesheet_last = auth()->user()->timesheets->where('time_in', '>=', $x_time_in)->first();
+
+        $timesheet_last = auth()->user()->timesheets()
+            ->whereDate('time_in', $x_time_in)
+            ->first();
 
         if (strtotime($x_time_in) >= strtotime(date('Y-m-d'))) {
             return redirect()->back()->withErrors('Error! Dont cheat on time!');
