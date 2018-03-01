@@ -25,7 +25,18 @@ class HomeController extends Controller
             'from' => $data['from'],
             'to' => empty($data['to']) ? $data['from'] : $data['to'],
         );
-        $timesheets = Timesheet::where('user_id', auth()->user()->id)->whereBetween('created_at', array($date['from'], $date['to']))->get();
+
+        if ($date['from'] != $date['to']) {
+            $timesheets = Timesheet::where('user_id', auth()->user()->id)
+                ->where('is_checked', true)
+                ->whereDate('time_in', '>=', $date['from'])
+                ->whereDate('time_out', '<=', $date['to'])
+                ->get();
+        } else {
+            $timesheets = Timesheet::where('user_id', auth()->user()->id)->where('is_checked', true)->whereDate('time_in', $date['from'])
+                ->get();
+        }
+
         return view('report', compact('timesheets', 'date'));
     }
 
