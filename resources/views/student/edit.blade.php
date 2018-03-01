@@ -2,9 +2,16 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+              <div class="container-fluid p-4">
+        <div class="col-md-12">
+            <center>
+            <h3 class="mb-0">
+                <span class="text-primary">Edit Student</span>
+            </h3>
+            </center>
+            <hr>
             <div class="panel panel-default">
-                <div class="panel-heading">Create Student</div>
+                <div class="panel-heading"></div>
                 <div class="panel-body">
                     <form onsubmit="return confirm('Do you want to update this data?');" method="POST" action="{{ route('student.update', $student->id) }}">
                         {{ method_field('PATCH') }}
@@ -35,12 +42,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success form-control">Save</button>
+                            <button type="submit" class="btn btn-success form-control">Update</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 @endsection
