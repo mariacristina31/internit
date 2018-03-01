@@ -132,7 +132,9 @@
             <div class="message-item">
                 <div class="message-inner">
                     <div class="message-head clearfix">
-                        <div class="avatar pull-left"><img src="{{ asset('images/dummy_character.png') }}"></div>
+                        <div class="avatar pull-left">
+                            <img src="{{ asset('images/dummy_character.png') }}">
+                        </div>
                         <div class="user-detail">
                             <h5 class="handle">{{$post->title}}</h5>
                             <div class="post-meta">

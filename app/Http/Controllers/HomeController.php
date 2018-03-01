@@ -20,6 +20,7 @@ class HomeController extends Controller
 
     public function reportTimesheet(Request $request)
     {
+        $auth = auth()->user();
         $data = $request->all();
         $date = array(
             'from' => $data['from'],
@@ -37,7 +38,7 @@ class HomeController extends Controller
                 ->get();
         }
 
-        return view('report', compact('timesheets', 'date'));
+        return view('report', compact('timesheets', 'date', 'auth'));
     }
 
     public function information()

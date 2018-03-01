@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('username')->nullable();
             $table->string('contact')->nullable();
             $table->string('email')->nullable();
+            $table->string('reset')->nullable();
             $table->string('password')->nullable();
             $table->string('picture')->default('dummy_character.png');
             $table->string('is_verified')->default(false);

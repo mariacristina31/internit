@@ -30,7 +30,7 @@
                 @if(!$student->user->is_verified && !empty($student->requirements->toarray()))
                 <button form="student-revoke-req-{{$student->id}}" type="submit" class="form-control btn btn-danger">Revoke</button>
                 <button form="student-ver-req-{{$student->id}}" type="submit" class="form-control btn btn-success">Verify Student</button>
-                <form id="student-ver-req-{{$student->id}}" action="{{ route('verifystudent') }}" method="POST">
+                <form onsubmit="return confirm('Do you want to save this changes?');" id="student-ver-req-{{$student->id}}" action="{{ route('verifystudent') }}" method="POST">
                 {{ csrf_field() }}
                 <input type="hidden" name="student_id" value="{{$student->id}}">
                 </form>

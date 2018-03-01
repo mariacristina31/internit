@@ -9,14 +9,14 @@
                     <form onsubmit="return confirm('Do you want to save this data?');" method="POST" action="{{ route('section.store') }}">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Namessss</label>
                             <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
                         </div>
                         <div class="form-group">
                             <label for="school_year">School Year</label>
                             <select class="form-control" name="school_year" id="school_year">
                                 <option {{ old('school_year') == null ? 'selected' : '' }} disabled>Select School Year</option>
-                                @for($i = date('Y'); $i >= 1990; $i--)
+                                @for($i = 2030; $i >= 2000; $i--)
                                     @php
                                         $x = $i+1;
                                         $school_year = $i . " - " . $x;
