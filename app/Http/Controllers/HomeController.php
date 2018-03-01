@@ -61,6 +61,11 @@ class HomeController extends Controller
             return redirect()->route('requirements.company');
         } elseif ($request->route == 'requirements.documents') {
             $requirements = Requirement::all();
+
+            if (!$request->attachment) {
+                return redirect()->back();
+            }
+
             foreach ($request->attachment as $key => $value) {
                 if ($request->hasFile('attachment.' . $key)) {
                     $attachment = $request->file('attachment.' . $key);
