@@ -19,7 +19,7 @@
   </head>
   <body>
     <div class="container">
-      <h4><b>TImesheet</b></h4>
+      <h4><b>{{ $auth->first_name }} {{ $auth->last_name }} Timesheet</b></h4>
       <h3>Inclusive Dates : <strong>{{$date['from']}} - {{$date['to']}}</strong></h3>
       <table class="table table-bordered">
         <thead>

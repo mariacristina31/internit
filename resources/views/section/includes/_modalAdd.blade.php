@@ -18,7 +18,7 @@
                         <label for="school_year">School Year</label>
                         <select class="form-control" name="school_year" id="school_year">
                             <option {{ old('school_year') == null ? 'selected' : '' }} disabled>Select School Year</option>
-                            @for($i = date('Y'); $i >= 1990; $i--)
+                            @for($i = 2050; $i >= 2000; $i--)
                             @php
                             $x = $i+1;
                             $school_year = $i . " - " . $x;
