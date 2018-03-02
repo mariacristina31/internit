@@ -65,9 +65,23 @@ class HomeController extends Controller
     {
         $student = Student::find(auth()->user()->student->id);
         if ($request->route == 'requirements.company') {
+
             $student->update($request->all());
             return redirect()->route('requirements.documents');
         } elseif ($request->route == 'requirements.information') {
+
+            $dt = new \Carbon\Carbon();
+            $before = $dt->subYears(15)->format('Y-m-d');
+
+            $this->validate($request, [
+                'address' => 'required|max:250',
+                'email' => 'required|max:191|email',
+                'contact' => ['required', 'regex:/^(09|\+639)\d{9}$/'],
+                'guardian_contact' => ['required', 'regex:/^(09|\+639)\d{9}$/'],
+                'guardian_name' => 'required|max:191',
+                'birthdate' => 'required|date|before:' . $before,
+            ]);
+
             $student->user->update($request->all());
             $student->update($request->all());
             return redirect()->route('requirements.company');

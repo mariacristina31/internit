@@ -17,7 +17,7 @@
                 <strong><h3>Import Student Format: *CSV</h3><strong></strong>
                 <p>Fields:</p>
                 <ul>
-                    <li>student_number</li>
+                    <li>student_number (format 00-0000-000)</li>
                     <li>last_name</li>
                     <li>first_name</li>
                     <li>middle_name</li>

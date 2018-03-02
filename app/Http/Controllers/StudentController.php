@@ -28,6 +28,13 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'student_number' => '|required|unique|max:250|regex:/^\d{2}-\d{4}-\d{3}$/',
+            'first_name' => 'required|max:191',
+            'last_name' => 'required|max:191',
+            'middle_name' => 'max:191',
+        ]);
+
         $code = 'oims-' . mt_rand(5, 99999);
         $role_student = Role::where('name', 'Student')->first();
         $user = new User;
@@ -63,6 +70,14 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::find($id);
+
+        $this->validate($request, [
+            'student_number' => '|required|max:250|regex:/^\d{2}-\d{4}-\d{3}$/|unique:students,student_number,' . $student->student_number,
+            'first_name' => 'required|max:191',
+            'last_name' => 'required|max:191',
+            'middle_name' => 'max:191',
+        ]);
+
         $student->user->update($request->all());
         $student->update($request->all());
         return redirect()->route('student.index');
@@ -89,30 +104,38 @@ class StudentController extends Controller
                 $data = \Excel::load($path)->get();
                 $role_student = Role::where('name', 'Student')->first();
                 if ($data->count()) {
+
                     foreach ($data as $key => $value) {
 
-                        $checker = Student::where('student_number', $value->student_number)->first();
-                        if (empty($checker)) {
-                            $code = 'oims-' . mt_rand(5, 99999);
-                            $user_data = [
-                                'first_name' => $value->first_name,
-                                'last_name' => $value->last_name,
-                                'middle_name' => $value->middle_name,
-                                'username' => $code,
-                                'password' => bcrypt($code),
-                            ];
-                            $user = new User;
-                            $user->fill($user_data)->save();
-                            $user->roles()->attach($role_student);
-                            $section = Section::where('name', $value->section)->where('school_year', $value->school_year)->first();
-                            $student = new Student;
-                            $student_data = [
-                                'user_id' => $user->id,
-                                'student_number' => (string) $value->student_number,
-                                'section_id' => !empty($section) ? $section->id : null,
-                            ];
-                            $student->fill($student_data)->save();
+                        $check_regex_student_number = preg_match('/^\d{2}-\d{4}-\d{3}$/D', $value->student_number);
+
+                        if ($check_regex_student_number === 1) {
+                            $checker = Student::where('student_number', $value->student_number)->first();
+                            if (empty($checker)) {
+                                $code = 'oims-' . mt_rand(5, 99999);
+                                $user_data = [
+                                    'first_name' => $value->first_name,
+                                    'last_name' => $value->last_name,
+                                    'middle_name' => $value->middle_name,
+                                    'username' => $code,
+                                    'password' => bcrypt($code),
+                                ];
+                                $user = new User;
+                                $user->fill($user_data)->save();
+                                $user->roles()->attach($role_student);
+                                $section = Section::where('name', $value->section)->where('school_year', $value->school_year)->first();
+                                $student = new Student;
+                                $student_data = [
+                                    'user_id' => $user->id,
+                                    'student_number' => (string) $value->student_number,
+                                    'section_id' => !empty($section) ? $section->id : null,
+                                ];
+                                $student->fill($student_data)->save();
+                            }
+                        } else {
+                            return redirect()->back()->withErrors('Wrong format student number');
                         }
+
                     }
                     return redirect()->back();
                 }

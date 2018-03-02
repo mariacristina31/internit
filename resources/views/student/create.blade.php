@@ -10,13 +10,14 @@
             </h3>
             </center>
             <hr>
+            @include('includes._message')
             <div class="panel panel-default">
                 <div class="panel-heading"></div>
                 <div class="panel-body">
                     <form onsubmit="return confirm('Do you want to save this data?');" method="POST" action="{{ route('student.store') }}">
                         {{ csrf_field() }}
                               <div class="form-group">
-                            <label for="student_number">Student Number</label>
+                            <label for="student_number">Student Number (format 00-0000-000)</label>
                             <input id="student_number" type="text" class="form-control" name="student_number" value="{{ old('student_number') }}" required autofocus>
                         </div>
                         <div class="form-group">
