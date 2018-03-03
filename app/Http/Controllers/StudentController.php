@@ -28,6 +28,9 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'student_number' => 'required|regex:/(^([a-zA-z]+)(\d+)?$)/u',
+        ]);
         $code = 'oims-' . mt_rand(5, 99999);
         $role_student = Role::where('name', 'Student')->first();
         $user = new User;

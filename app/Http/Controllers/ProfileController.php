@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Image;
 use Session;
+use Validator;
 
 class ProfileController extends Controller
 {
@@ -77,25 +78,40 @@ class ProfileController extends Controller
 
     public function pux(Request $request)
     {
-        $data = $request->all();
-        if ($request->has('picture')) {
-            $picture = $request->file('picture');
-            $filename = time() . '.' . $picture->getClientOriginalExtension();
-            $data['picture'] = $filename;
-            $background = Image::canvas(480, 360);
-            $image = Image::make($picture)->resize(480, 360, function ($c) {
-                $c->aspectRatio();
-                $c->upsize();
-            });
-            $background->insert($image, 'center');
-            $background->save(public_path('images/' . $filename));
+        $rules = array(
+            'contact' => 'required|max:11|integer',
+            'email' => 'required|max:20|integer',
+            'birthdate' => 'required|max:10|integer',
+            'sex' => 'required|max:5|integer',
+            'gurdian_name' => 'required|max:20|integer',
+            'gurdian_contact' => 'required|max:20|integer',
+        );
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator);
+        } else {
+            $data = $request->all();
+            if ($request->has('picture')) {
+                $picture = $request->file('picture');
+                $filename = time() . '.' . $picture->getClientOriginalExtension();
+                $data['picture'] = $filename;
+                $background = Image::canvas(480, 360);
+                $image = Image::make($picture)->resize(480, 360, function ($c) {
+                    $c->aspectRatio();
+                    $c->upsize();
+                });
+                $background->insert($image, 'center');
+                $background->save(public_path('images/' . $filename));
+            }
+            $user = User::find(auth()->user()->id);
+            $user->update($data);
+            if ($user->hasRole('Student')) {
+                $user->student->update($data);
+            }
         }
-        $user = User::find(auth()->user()->id);
-        $user->update($data);
-        if ($user->hasRole('Student')) {
-            $user->student->update($data);
-        }
-        return redirect()->back();
+
     }
 
     public function pu()
