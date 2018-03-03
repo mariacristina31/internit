@@ -71,7 +71,7 @@
                                 <textarea name="address" id="address" class="form-control" required>{{ auth()->user()->student->address }}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="contact">Contact Number</label>
+                                <label for="contact">Contact Number (starts with 09 or +63)</label>
                                 <input id="contact" type="text" class="form-control" name="contact" value="{{ auth()->user()->contact }}">
                             </div>
                             <div class="form-group">
@@ -97,7 +97,7 @@
                                 <input id="guardian_name" type="text" class="form-control" name="guardian_name" value="{{ auth()->user()->student->guardian_name }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="guardian_contact">Guardian Contact</label>
+                                <label for="guardian_contact">Guardian Contact (starts with 09 or +63)</label>
                                 <input id="guardian_contact" type="text" class="form-control" name="guardian_contact" value="{{ auth()->user()->student->guardian_contact }}" required>
                             </div>
                         </div>

@@ -17,7 +17,7 @@
                 <strong><h3>Import Student Format: *CSV</h3><strong></strong>
                 <p>Fields:</p>
                 <ul>
-                    <li>student_number</li>
+                    <li>student_number (format 00-0000-000)</li>
                     <li>last_name</li>
                     <li>first_name</li>
                     <li>middle_name</li>
@@ -33,9 +33,11 @@
                     <input onchange="this.form.submit()" type="file" name="csvs" accept=".csv" id="csv" style="visibility: hidden;">
                 </form>
                 <hr>
-                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createpost">
+{{--                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createpost">
                     Create Student
                     </button>
+ --}}
+                    <a href="{{ route('student.create')}}" class="btn btn-primary">Create Student</a>
 
             </div>
             <hr>
@@ -75,9 +77,14 @@
                                     <td>{{ $student->user->is_verified == 1 ? 'true' : 'false' }}</td>
                                     <td>
                                         <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#xxx-{{$student->id}}">Files</a>
-                                          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpost-{{$student->id}}">
+
+                                    {{--       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editpost-{{$student->id}}">
                                             Edit
-                                            </button>
+                                            </button> --}}
+
+                                            <a class="btn btn-info" href="{{route('student.edit', $student->id)}}">Edit</a>
+
+
                                         <button type="submit" form="student-delete-{{$student->id}}" class="btn btn-danger">Delete</button>
                                         <form onsubmit="return confirm('Do you want to delete this data?');" id="student-delete-{{$student->id}}" action="{{route('student.destroy', $student->id)}}" method="POST">
                                             {{ method_field('DELETE') }}
@@ -86,7 +93,7 @@
                                     </td>
                                 </tr>
                                 @include('student.includes._tinay')
-                                @include('student.includes._modalEdit')
+                                {{-- @include('student.includes._modalEdit') --}}
 
                                 @endforeach
                             </tbody>
@@ -98,7 +105,7 @@
         </div>
     </div>
 </div>
-@include('student.includes._modalAdd')
+{{-- @include('student.includes._modalAdd') --}}
 @endsection
 @section('script')
 <script>
